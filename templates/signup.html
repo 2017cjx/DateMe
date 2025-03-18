@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<div class="container">
+
+    <header class="d-flex justify-content-between align-items-center py-3">
+        <h1 class="logo">
+            <a href="{{ url_for('main.home') }}" class="text-dark text-decoration-none">DateMe</a>
+        </h1>
+    </header>
+
+    <h2>Sign Up</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}  <!-- ✅ CSRF トークンを含む -->
+        <div class="mb-3">
+            <label for="username" class="form-label">User name</label>
+            {{ form.username(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            {{ form.password(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-custom-primary") }}
+        </div>
+        <small>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></small>
+    </form>
+
+</div>
+{% endblock %}

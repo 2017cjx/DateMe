@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Your Date Plans 💕</h1>
+    <a href="{{url_for('create.create_date_form')}}"><button class="btn btn-custom-primary">Plan a Date</button></a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Your Date</th>
+            <th>Response Status</th>
+            <th>Dinner Choice</th>
+            <th>Activity Fun</th>
+            <th>Meet-up Spot</th>
+            <!-- <th>選択肢編集</th> -->
+            <th>Invite Link</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for date in date_data %}
+        <tr>
+            <td>{{ date.number }}</td>
+            <td>{{ date.partner_name }}</td>
+            <td>
+                <span class="badge 
+                    {% if date.response_status == 'Yes'%} bg-custom-success 
+                    {% elif date.response_status == 'No' %}bg-custom-danger 
+                    {% else %}bg-custom-secondary{% endif %}">
+                   {{ date.response_status }}
+                </span>
+            </td>
+            <td>
+                {% if date.response_status == "Yes" %}
+                    {{ date.response_details.meal_1 }}{% if date.response_details.meal_2%}, {{date.response_details.meal_2}}{% endif %}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if date.response_status == "Yes" %}
+                    {{ date.response_details.activity_1 }}{% if date.response_details.activity_2%}, {{date.response_details.activity_2}}{% endif %}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {% if date.response_status == "Yes" %}
+                    {{ date.response_details.location }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <!-- <td>
+                {% if date.response_status == "未回答" %}
+                    <a href="{{ url_for('admin.edit_date', form_id=date.id) }}" class="btn btn-custom-outline btn-sm">選択肢編集</a>
+                {% else %}
+                    -
+                {% endif %}
+            </td> -->
+            <td>
+                {% if date.response_status == "No Response Yet" %}
+                <a href="{{ date.response_url }}" target="_blank" class="btn btn-custom-info btn-sm">URL</a>
+                {% else %}
+                -
+                {% endif %}
+            </td>
+            <td>
+                <button class="btn btn-custom-danger btn-sm" onclick="deleteDate('{{ date.id }}')">Delete</button>
+            </td>
+
+            <script>
+                function deleteDate(formId){
+                    if (!confirm("Are you sure you want to delete this date?")){
+                        return;
+                    }
+
+                    fetch("{{ url_for('admin.delete_date', form_id=0)}}".replace('0', formId),{
+                        method: "POST",
+                        headers:{
+                            "X-CSRFToken": "{{ csrf_token() }}"
+                        }
+                    }).then(response =>{
+                        if (response.ok){
+                            location.reload();
+                        } else {
+                            alert("Oops! Couldn't delete it. Try again! ")
+                        }
+                    });
+                }
+            </script>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+ </table>
+{% endblock %}

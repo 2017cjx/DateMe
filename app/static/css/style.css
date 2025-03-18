@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Readex+Pro:wght@160..700&display=swap');
+
+body {
+    background-color: #F2F0ED;
+    font-family: "Outfit", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2.5rem; /* 文字サイズ */
+    font-weight: bold; /* 太字 */
+}
+
+.site-title {
+    font-size: 60px;
+    font-weight: bold;
+    font-family: "Outfit", sans-serif;
+}
+
+.catchphrase{
+    font-size: 20;
+    color: #555;
+}
+
+.btn-custom {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-custom-primary{
+    background-color: #3D0301;
+    color: white;
+}
+
+.btn-custom-warning{
+    background-color: #B03052;
+    color: white;
+}
+
+.btn-custom-info{
+    background-color: #D76C82;
+    color: white;
+}
+
+.btn-custom-danger{
+    background-color: #B03052;
+    color: white;
+}
+
+.btn-custom-outline{
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+}
+
+.btn-custom:hover{
+    transform: scale(1.05);
+}
+
+.bg-custom-success{
+    background-color: #3D0301;
+    color: white;
+}
+
+.bg-custom-danger{
+    background-color: #B03052;
+    color: white;
+}
+
+.bg-custom-secondary{
+    background-color: #D76C82;
+    color: white;
+}
+
+.bg-custom-outline{
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+
+.table thead th{
+    background-color:#3D0301 !important;
+    color: white !important;
+}
+
+table {
+    background-color: transparent !important;
+    border-collapse: collapse;
+}
+
+.table tbody tr {
+    background-color: transparent !important;
+}
+
+.table td, .table th {
+    padding: 12px;
+    border-bottom: 1px solid #ddd !important;
+    text-align: left;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}

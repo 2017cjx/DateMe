@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Add Date Confirm{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mb-3">Review Your Date Plan Options</h1>
+
+    <h2 class="mt-4 mb-3">Meal Options</h2>
+    <div class="row row-cols-2 row-cols-md-3 g-3">
+        {% for meal in meals %}
+        <div class="col">
+            <div class="card border-light shadow-sm p-2">
+                {{ meal.meal_title }}
+                {% if meal.meal_image %}
+                <img src="{{ url_for('static', filename=(meal.meal_image|safe)) }}" width="70">
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <h2 class="mt-4 mb-3">Activity Options</h2>
+    <div class="row row-cols-2 row-cols-md-3 g-3">
+        {% for activity in activities %}
+        <div class="col">
+            <div class="card border-light shadow-sm p-2">
+                {{ activity.activity_title }}
+                {% if activity.activity_image %}
+                <img src="{{ url_for('static', filename=(activity.activity_image|safe)) }}" width="70">
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="mt-4 mb-3">Meet-ip Spot Options</h2>
+    <div class="list-group">
+        {% for meeting_location in meeting_locations %}
+        <label class="list-group-item">
+            {{ meeting_location.location_title }}
+        </label>
+        {% endfor %}
+    </div>
+
+    <div class="mt-4">
+        <a href="{{ url_for('admin.dashboard')}}" class="btn btn-custom-primary btn-lg w-100">Save Your Date</a>
+    </div>
+</div>
+{% endblock %}

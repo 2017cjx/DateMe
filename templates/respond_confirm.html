@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Response Confirm{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Final Check! Ready for Your Date?</h1>
+    <h2 class="mb-3">Your Meal Choice(s):</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+        {% if selected_meal_1 %}
+        <div class="col">
+            <div class="card border-light shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">{{ selected_meal_1.meal_title }}</p>
+                    <!-- {% if selected_meal_1.meal_image %} -->
+                    <img src="{{ url_for('static', filename=(selected_meal_1.meal_image|safe)) }}" width="100"
+                        class="img-fluid rounded">
+                    <!-- {% endif %} -->
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if selected_meal_2 %}
+        <div class="col">
+            <div class="card border-light shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">{{ selected_meal_2.meal_title }}</p>
+                    {% if selected_meal_2.meal_image %}
+                    <img src="{{ url_for('static', filename=(selected_meal_2.meal_image|safe)) }}" width="100"
+                        class="img-fluid rounded">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <h2 class="mt-4 mb-3">Your Fun Activities:</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+        {% if selected_activity_1 %}
+        <div class="col">
+            <div class="card border-light shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">{{ selected_activity_1.activity_title }}</p>
+                    {% if selected_activity_1.activity_image %}
+                    <img src="{{ url_for('static', filename=(selected_activity_1.activity_image|safe)) }}" width="100"
+                        class="img-fluid rounded">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if selected_activity_2 %}
+        <div class="col">
+            <div class="card border-light shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">{{ selected_activity_2.activity_title }}</p>
+                    {% if selected_activity_2.activity_image %}
+                    <img src="{{ url_for('static', filename=(selected_activity_2.activity_image|safe)) }}" width="100"
+                        class="img-fluid rounded">
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <h2 class="mt-4 mb-3">Your Meeting Spot:</h2>
+    <div class="list-group">
+        {% if selected_location %}
+        <label class="list-group-item">
+            {{ selected_location.location_title }}
+        </label>
+        {% endif %}
+    </div>
+
+    <div class="mt-4">
+        <a href="{{ url_for ('respond.respond_thank_you', form_uuid=form_uuid)}}">
+            <button class="btn btn-custom-primary btn-lg w-100">Confirm</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Privacy Policy{% endblock %}
+{% block content %}
+<div class="container">
+    <header class="d-flex justify-content-between align-items-center py-3">
+        <h1 href="{{ url_for('main.home') }}" class="logo">DateMe</h1>
+        <div>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-custom btn-custom-secondary">Login</a>
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-custom btn-custom-primary me-2">Sign Up</a>
+        </div>
+    </header>
+
+    <h2 class="mb-4">Privacy Policy</h2>
+    <p>Your privacy is important to us. Here's how we handle your data:</p>
+    <ul>
+        <li>We collect only the necessary data to provide our service.</li>
+        <li>Your personal information will not be shared with third parties.</li>
+        <li>You can request data deletion at any time by contacting us.</li>
+        <li>Cookies may be used for a better user experience.</li>
+    </ul>
+    <p>For inquiries, reach out at <a href="https://x.com/tomo_u_dub" target="_blank">our X account</a>.</p>
+</div>
+{% endblock %}

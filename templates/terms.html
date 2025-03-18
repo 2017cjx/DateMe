@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Terms of Service{% endblock %}
+{% block content %}
+<div class="container">
+    <header class="d-flex justify-content-between align-items-center py-3">
+        <h1 class="logo">
+            <a href="{{ url_for('main.home') }}" class="text-dark text-decoration-none">DateMe</a>
+        </h1>
+        <div>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-custom btn-custom-secondary">Login</a>
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-custom btn-custom-primary me-2">Sign Up</a>
+        </div>
+    </header>
+
+    <h2 class="mb-4">Terms of Service</h2>
+    <p>Welcome to DateMe! By using our service, you agree to the following terms:</p>
+    <ul>
+        <li>Users must be at least 18 years old.</li>
+        <li>We are not responsible for any interactions outside of our platform.</li>
+        <li>Do not use this platform for harassment, fraud, or any illegal activities.</li>
+        <li>We reserve the right to modify these terms at any time.</li>
+    </ul>
+    <p>If you have any questions, contact us at <a href="https://x.com/tomo_u_dub" target="_blank">our X account</a>.</p>
+</div>
+{% endblock %}
