@@ -1,16 +1,21 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config:
     SECRET_KEY = os.urandom(24)
 
-    DB_INFO = {
-        'user': 'uemura',
-        'password': '',
-        'host': '127.0.0.1',
-        'port': '5433',
-        'name': 'postgres',
-    }
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg://{user}:{password}@{host}:{port}/{name}'.format(**DB_INFO)
+    #DB_INFO = {
+    #    'user': 'flaskuser',
+    #    'password': 'tomo0118',
+    #    'host': '127.0.0.1',
+    #    'port': '5432',
+    #    'name': 'flaskdb',
+    #}
+    #SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg://{user}:{password}@{host}:{port}/{name}'.format(**DB_INFO)
+    
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")  # ✅ アップロードフォルダを設定

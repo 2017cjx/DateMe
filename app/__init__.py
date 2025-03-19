@@ -54,3 +54,5 @@ def create_app():
     app.register_blueprint(respond, url_prefix="/respond")
 
     return app
+
+app = create_app()
