@@ -27,7 +27,11 @@ class Config:
     #}
     #SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg://{user}:{password}@{host}:{port}/{name}'.format(**DB_INFO)
     
-    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
+    if os.getenv("FLASK_ENV") == "development":
+        SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://flaskuser:tomo0118@127.0.0.1:5432/flaskdb"
+    else:
+        SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     UPLOAD_FOLDER = os.path.join(os.getcwd(), "uploads")  # ✅ アップロードフォルダを設定
