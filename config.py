@@ -4,7 +4,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    SECRET_KEY = os.urandom(24)
+
+    import os
+
+class Config:
+    
+    SECRET_KEY = os.getenv("SECRET_KEY", "your-secure-random-key")  # 固定する
+    WTF_CSRF_ENABLED = True
+    SESSION_TYPE = "filesystem"  # セッションをファイルに保存
+    SESSION_FILE_DIR = "/tmp/flask_sessions"
+    SESSION_COOKIE_SECURE = False  # ✅ HTTPSではないので `False`
+    SESSION_COOKIE_HTTPONLY = True  # ✅ XSS対策
+
+    # SECRET_KEY = os.urandom(24)
 
     #DB_INFO = {
     #    'user': 'flaskuser',

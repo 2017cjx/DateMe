@@ -28,16 +28,16 @@ class CreateDateForm(FlaskForm):
 class MealForm(FlaskForm):
     meal_title = StringField("食事のタイトル", validators=[DataRequired()])
     meal_image = FileField("画像")
-    submit = SubmitField("追加")
+    submit = SubmitField("Add")
 
 class ActivityForm(FlaskForm):
     activity_title = StringField("アクティビティのタイトル", validators=[DataRequired()])
     activity_image = FileField("画像")
-    submit = SubmitField("追加")
+    submit = SubmitField("Add")
 
 class LocationForm(FlaskForm):
     location_title = StringField("待ち合わせ場所のタイトル", validators=[DataRequired()])
-    submit = SubmitField("追加")
+    submit = SubmitField("Add")
 
 @create.route("/", methods=["GET", "POST"])
 @login_required
