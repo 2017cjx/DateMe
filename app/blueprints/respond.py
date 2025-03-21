@@ -43,7 +43,7 @@ def respond_to_invite(form_uuid):
         db.session.commit()
     
         if response_value == "no":
-            return render_template("respond_no_thank_you.html")
+            return redirect(url_for("respond.respond_no_thank_you", form_uuid=form_uuid))
         
         return redirect(url_for("respond.respond_select_options", form_uuid=form_uuid))
 
@@ -160,3 +160,7 @@ def confirm_response(form_uuid):
 @respond.route("/thank_you/<uuid:form_uuid>")
 def respond_thank_you(form_uuid):
     return render_template("respond_thank_you.html", form_uuid=form_uuid)
+
+@respond.route("/no_thank_you/<uuid:form_uuid>")
+def respond_no_thank_you(form_uuid):
+    return render_template("respond_no_thank_you.html", form_uuid=form_uuid)
