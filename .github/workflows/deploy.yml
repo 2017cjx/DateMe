@@ -30,22 +30,22 @@ jobs:
           source venv/bin/activate
           pytest  # `pytest` を使用する場合
 
-deploy:
-  needs: build
-  runs-on: ubuntu-latest
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: SSHでEC2にデプロイ
-      uses: appleboy/ssh-action@v0.1.7
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ec2-user
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          cd /home/ec2-user/DateMe  # Flaskアプリのディレクトリへ移動
-          git pull origin main
-          source venv/bin/activate
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          sudo systemctl restart flask-app  # systemd で Flask を管理している場合
+    steps:
+      - name: SSHでEC2にデプロイ
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ec2-user/DateMe  # Flaskアプリのディレクトリへ移動
+            git pull origin main
+            source venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            sudo systemctl restart flask-app  # systemd で Flask を管理している場合
 
