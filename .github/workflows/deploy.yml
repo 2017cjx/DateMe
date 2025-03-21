@@ -30,57 +30,22 @@ jobs:
           source venv/bin/activate
           pytest  # `pytest` を使用する場合
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
+deploy:
+  needs: build
+  runs-on: ubuntu-latest
 
-    steps:
-      - name: SSHでEC2にデプロイ
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: 13.113.122.196
-          username: ec2-user
-          key: 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
-b21wdXRlLmludGVybmFsAQIDBAU=
-          script: |
-            cd /home/ec2-user/DateMe  # Flaskアプリのディレクトリへ移動
-            git pull origin main
-            source venv/bin/activate
-            pip install --upgrade pip
-            pip install -r requirements.txt
-            sudo systemctl restart flask-app  # systemd で Flask を管理している場合
+  steps:
+    - name: SSHでEC2にデプロイ
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ec2-user
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          cd /home/ec2-user/DateMe  # Flaskアプリのディレクトリへ移動
+          git pull origin main
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          sudo systemctl restart flask-app  # systemd で Flask を管理している場合
+
