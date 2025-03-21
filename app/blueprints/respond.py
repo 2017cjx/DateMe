@@ -29,7 +29,7 @@ def respond_to_invite(form_uuid):
     date_form = Date_form.query.filter_by(uuid=str(form_uuid)).first_or_404()
 
     if request.method == "POST" and form.validate_on_submit():
-        response_value = form.response_yes_no.data
+        response_value = request.form.get("response_yes_no")
         response_yes_no = response_value == "yes"
 
         response = Date_responses.query.filter_by(form_id=date_form.id).first()
