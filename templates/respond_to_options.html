@@ -55,4 +55,26 @@
         </div>        
     </form>
 </div>
+
+<script>
+    function limitCheckboxes(name, max) {
+      const checkboxes = document.querySelectorAll(`input[name="${name}"]`);
+  
+      checkboxes.forEach(cb => {
+        cb.addEventListener('change', () => {
+          const checkedCount = Array.from(checkboxes).filter(i => i.checked).length;
+          checkboxes.forEach(i => {
+            // 選択済みが最大数に達したら、他の未選択を無効化
+            if (!i.checked) {
+              i.disabled = checkedCount >= max;
+            }
+          });
+        });
+      });
+    }
+  
+    // 「meal_choices」と「activity_choices」に制限を適用
+    limitCheckboxes('meal_choices', 2);
+    limitCheckboxes('activity_choices', 2);
+  </script>
 {% endblock %}
