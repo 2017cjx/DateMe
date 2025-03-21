@@ -2,17 +2,61 @@
 {% block title %}DateMe{% endblock %}
 {% block content %}
 <div class="container">
-    <header class="d-flex justify-content-between align-items-center py-3">
-        <h1 class="logo">DateMe</h1>
-        <div>
-            <a href="{{ url_for('auth.login') }}" class="btn btn-custom btn-custom-secondary">Login</a>
-            <a href="{{ url_for('auth.signup') }}" class="btn btn-custom btn-custom-primary me-2">Sign Up</a>
-        </div>
-    </header>
 
-    <div class="d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+    <!-- Header -->
+    <header class="d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+        <h1 class="logo mb-2 mb-md-0">DateMe</h1>
+        <div class="d-flex gap-2">
+          <a href="{{ url_for('auth.login') }}" class="btn btn-custom btn-custom-secondary">Login</a>
+          <a href="{{ url_for('auth.signup') }}" class="btn btn-custom btn-custom-primary">Sign Up</a>
+        </div>
+    </header>      
+
+    <!-- Hero section -->
+    <div class="d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 100vh;">
         <h1 class="site-title">DateMe</h1>
-        <p class="catchphrase">The app for those who met the one.</p>
+        <p class="catchphrase mt-2 mb-3">The app for those who met the one.</p>
     </div>
+      
+
+    <!-- Steps section -->
+    <section class="py-5">
+        <div class="container text-center">
+            <h2 class="mb-5">Plan the Perfect Date in 3 Easy Steps</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="p-4 border rounded h-100">
+                        <h5>Step 1: Create a Date Plan</h5>
+                        <p>Choose a few options like preferred food genres and places you'd like to go.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 border rounded h-100">
+                        <h5>Step 2: Share the Link</h5>
+                        <p>Send the unique link to your partner — no login required for them to respond.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 border rounded h-100">
+                        <h5>Step 3: Get Their Input</h5>
+                        <p>See your partner’s answers instantly and plan a date that fits both of you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy section -->
+    <section class="py-5">
+        <div class="container text-center">
+            <h3 class="mb-3">Your Privacy Matters</h3>
+            <p class="mb-5">
+                This app is designed with care to keep your information safe.<br>
+                While it's a personal project, your privacy and security are a top priority.<br>
+                We never share your data, and we do our best to protect every response and interaction.
+            </p>
+        </div>
+    </section>
+
 </div>
 {% endblock %}

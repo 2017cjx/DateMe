@@ -12,13 +12,9 @@
         <div class="row row-cols-2 row-cols-md-3 g-3">
             {% for meal in meals %}
             <div class="col">
-                <label class="card border-light shadow-sm p-2">
-                    <div class="form-check">
-                        <input type="checkbox" name="meal_choices" value="{{ meal.id }}" class="form-check-input">
-                        <label class="form-check-label">
-                            {{ meal.meal_title }}
-                        </label>
-                    </div>
+                <label class="card border-light shadow-sm p-2 d-block">
+                    <input type="checkbox" name="meal_choices" value="{{ meal.id }}" class="form-check-input me-2">
+                    {{ meal.meal_title }}
                     {% if meal.meal_image %}
                     <img src="{{ url_for('static', filename=(meal.meal_image|safe)) }}" width="100" class="img-fluid rounded mt-2">
                     {% endif %}
@@ -26,26 +22,23 @@
             </div>
             {% endfor %}
         </div>
-
+        
     
         <h2 class="mt-4 mb-3">Pick Your Fun Activity (Choose up to 2!)</h2>
         <div class="row row-cols-2 row-cols-md-3 g-3">
             {% for activity in activities %}
             <div class="col">
-                <label class="card border-light shasow-sm p-2">
-                    <div class="form-check">
-                        <input type="checkbox" name="activity_choices" value="{{ activity.id }}" class="form-check-input">
-                        <label class="form-check-label">
-                            {{ activity.activity_title }}
-                        </label>
-                    </div>
+                <label class="card border-light shadow-sm p-2 d-block">
+                    <input type="checkbox" name="activity_choices" value="{{ activity.id }}" class="form-check-input me-2">
+                    {{ activity.activity_title }}
                     {% if activity.activity_image %}
-                    <img src="{{ url_for('static', filename=(activity.activity_image|safe)) }}" width="70" class="img-fluid rounded mt-2"><br>
+                    <img src="{{ url_for('static', filename=(activity.activity_image|safe)) }}" width="70" class="img-fluid rounded mt-2">
                     {% endif %}
                 </label>
             </div>
             {% endfor %}
-        </div>    
+        </div>
+        
 
         <h2 class="mt-4 mb-3">Where Shall We Meet? (Pick one!) </h2>
         <div class="list-group">
