@@ -1,3 +1,52 @@
+# name: Flask CI/CD Pipeline
+
+# on:
+#   push:
+#     branches:
+#       - main  # main ブランチに push されたら実行
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: コードを取得
+#         uses: actions/checkout@v3
+
+#       - name: Python をセットアップ
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.10'  # EC2 に合わせる
+
+#       - name: 仮想環境の作成・依存関係のインストール・テスト実行（まとめて）
+#         run: |
+#           python -m venv venv
+#           source venv/bin/activate
+#           pip install --upgrade pip
+#           pip install -r requirements.txt
+#           pytest
+
+
+#   deploy:
+#     needs: build
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: SSHでEC2にデプロイ
+#         uses: appleboy/ssh-action@v0.1.7
+#         with:
+#           host: ${{ secrets.EC2_HOST }}
+#           username: ec2-user
+#           key: ${{ secrets.EC2_SSH_KEY }}
+#           script: |
+#             cd /home/ec2-user/DateMe  # Flaskアプリのディレクトリへ移動
+#             git pull origin main
+#             source venv/bin/activate
+#             pip install --upgrade pip
+#             pip install -r requirements.txt
+#             sudo systemctl restart flask-app  # systemd で Flask を管理している場合
+
+
 name: Flask CI/CD Pipeline
 
 on:
@@ -26,12 +75,24 @@ jobs:
           pip install -r requirements.txt
           pytest
 
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
+      - name: AWS CLI をセットアップ
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1  # ← 東京リージョンの場合（変更する）
+
+      - name: GitHub Actions の IP をセキュリティグループに追加
+        run: |
+          GITHUB_IP=$(curl -s https://checkip.amazonaws.com)
+          echo "GitHub Actions の IP: $GITHUB_IP"
+          aws ec2 authorize-security-group-ingress --group-id ${{ secrets.EC2_SECURITY_GROUP_ID }} --protocol tcp --port 22 --cidr "$GITHUB_IP/32"
+
       - name: SSHでEC2にデプロイ
         uses: appleboy/ssh-action@v0.1.7
         with:
