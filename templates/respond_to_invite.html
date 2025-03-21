@@ -2,7 +2,7 @@
 {% block title %}Response to Invitation{% endblock %}
 {% block content %}
 <div class="container">
-    <h1 class="mb-3">Are you in for this date?</h1>
+    <h1 class="mb-3">Are you in for the date?</h1>
     <form method="POST" class="mb-3">
         {{ form.hidden_tag() }}  <!-- ✅ CSRF対策 -->
         <button type="submit" name="response_yes_no" value="yes" class="btn btn-custom-primary btn-lg w-100 mb-2">Yes! </button>
