@@ -43,7 +43,7 @@ def respond_to_invite(form_uuid):
         db.session.commit()
     
         if response_value == "no":
-            return render_template("respond_thank_you.html")
+            return render_template("respond_no_thank_you.html")
         
         return redirect(url_for("respond.respond_select_options", form_uuid=form_uuid))
 

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}No Thank You{% endblock %}
+{% block content %}
+<div class="text-center">
+    <p>Not a problem!</p>
+    <p>Thanks for letting me know.</p>
+    <img src="{{ url_for('static', filename='img/dog.gif') }}" alt="Cute Dog" class="img-fluid my-4" style="max-width: 200px;">
+    <br>
+    <button class="btn btn-custom-primary" onclick="closeTab()">Close</button>
+</div>
+
+<script>
+    function closeTab() {
+        window.close();
+    }
+</script>
+{% endblock %}
